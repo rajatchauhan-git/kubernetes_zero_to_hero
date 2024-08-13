@@ -1,3 +1,5 @@
+![2](https://i.ibb.co/ZV6WhcM/2.png)
+
 Kubernetes networking is a foundational aspect that ensures seamless communication between the various components within a cluster. It encompasses a range of concepts and tools that manage how pods communicate with each other, how traffic is routed, and how policies are enforced to secure and manage these communications. This blog will guide you through essential Kubernetes networking concepts, including Services, Ingress, Network Policies, DNS, and Container Network Interface (CNI) plugins.
 
 ### 1. **Services in Kubernetes**
