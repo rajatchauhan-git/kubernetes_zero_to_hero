@@ -1,3 +1,7 @@
+![Kubernetes Architecture and Components, Kubernetes Installation and Configuration](https://cdn.hashnode.com/res/hashnode/image/upload/v1723507435177/a879c800-26f4-40ed-ac9c-5e8aa6e232f8.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp)
+
+
+
 This guide provides step-by-step instructions for installing Minikube on Ubuntu. Minikube allows you to run a single-node Kubernetes cluster locally for development and testing purposes.
 
 ## Pre-requisites
