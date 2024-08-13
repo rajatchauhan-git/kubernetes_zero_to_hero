@@ -13,9 +13,6 @@ This guide provides step-by-step instructions for installing Minikube on Ubuntu.
 
 Update your package lists to make sure you are getting the latest version and dependencies.
 
-Copy
-
-Copy
 
 ```yaml
 sudo apt update
@@ -27,9 +24,6 @@ sudo apt update
 
 Install some basic required packages.
 
-Copy
-
-Copy
 
 ```yaml
 sudo apt install -y curl wget apt-transport-https
@@ -43,9 +37,6 @@ sudo apt install -y curl wget apt-transport-https
 
 Minikube can run a Kubernetes cluster either in a VM or locally via Docker. This guide demonstrates the Docker method.
 
-Copy
-
-Copy
 
 ```yaml
 sudo apt install -y docker.io
@@ -55,19 +46,12 @@ sudo apt install -y docker.io
 
 Start and enable Docker.
 
-Copy
-
-Copy
 
 ```yaml
 sudo systemctl enable --now docker
 ```
 
 Add current user to docker group (To use docker without root)
-
-Copy
-
-Copy
 
 ```yaml
 sudo usermod -aG docker $USER && newgrp docker
@@ -81,9 +65,6 @@ Now, logout (use `exit` command) and connect again.
 
 First, download the Minikube binary using `curl`:
 
-Copy
-
-Copy
 
 ```yaml
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
@@ -93,9 +74,6 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
 
 Make it executable and move it into your path:
 
-Copy
-
-Copy
 
 ```yaml
 chmod +x minikube
@@ -108,9 +86,6 @@ sudo mv minikube /usr/local/bin/
 
 Download kubectl, which is a Kubernetes command-line tool.
 
-Copy
-
-Copy
 
 ```yaml
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -120,9 +95,6 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 
 **Check the above image ⬆️ Make it executable and move it into your path:**
 
-Copy
-
-Copy
 
 ```yaml
 chmod +x kubectl
@@ -135,9 +107,6 @@ sudo mv kubectl /usr/local/bin/
 
 Now, you can start Minikube with the following command:
 
-Copy
-
-Copy
 
 ```yaml
 minikube start --driver=docker --vm=true
@@ -153,9 +122,6 @@ This command will start a single-node Kubernetes cluster inside a Docker contain
 
 Check the cluster status with:
 
-Copy
-
-Copy
 
 ```yaml
 minikube status
@@ -165,9 +131,6 @@ minikube status
 
 You can also use `kubectl` to interact with your cluster:
 
-Copy
-
-Copy
 
 ```yaml
 kubectl get nodes
@@ -181,9 +144,6 @@ kubectl get nodes
 
 When you are done, you can stop the Minikube cluster with:
 
-Copy
-
-Copy
 
 ```yaml
 minikube stop
@@ -197,9 +157,6 @@ minikube stop
 
 If you wish to delete the Minikube cluster entirely, you can do so with:
 
-Copy
-
-Copy
 
 ```yaml
 minikube delete
