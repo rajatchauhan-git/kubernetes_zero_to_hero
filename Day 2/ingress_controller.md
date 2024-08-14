@@ -38,7 +38,7 @@ minikube status
 kubectl get nodes
 ```
 
-![image-20240814134802007](C:\Users\chumc\AppData\Roaming\Typora\typora-user-images\image-20240814134802007.png)
+![image-20240814134802007](https://i.ibb.co/RDyvRBr/image-20240814134802007.png)
 
 # 
 
@@ -90,7 +90,7 @@ spec:
 kubectl apply -f apache-deployment.yaml
 ```
 
-![image-20240814135757880](C:\Users\chumc\AppData\Roaming\Typora\typora-user-images\image-20240814135757880.png)
+![image-20240814135003173](https://i.ibb.co/VTLPSbk/image-20240814135003173.png)
 
 # 
 
@@ -142,7 +142,7 @@ spec:
 kubectl apply -f nginx-deployment.yaml
 ```
 
-![image-20240814135825279](C:\Users\chumc\AppData\Roaming\Typora\typora-user-images\image-20240814135825279.png)
+![image-20240814135825279](https://i.ibb.co/5x2MVPH/image-20240814135825279.png)
 
 # 
 
@@ -152,7 +152,7 @@ kubectl apply -f nginx-deployment.yaml
 minikube addons enable ingress
 ```
 
-![image-20240814135907827](C:\Users\chumc\AppData\Roaming\Typora\typora-user-images\image-20240814135907827.png)
+![image-20240814135907827](https://i.ibb.co/wgFggmp/image-20240814135907827.png)
 
 # 
 
@@ -197,7 +197,7 @@ spec:
 kubectl apply -f ingress.yaml
 ```
 
-![image-20240814135955422](C:\Users\chumc\AppData\Roaming\Typora\typora-user-images\image-20240814135955422.png)
+![image-20240814135955422](https://i.ibb.co/gyJshth/image-20240814135955422.png)
 
 # 
 
@@ -207,7 +207,9 @@ kubectl apply -f ingress.yaml
 echo "$(minikube ip) rcjerry.com" | sudo tee -a /etc/hosts
 ```
 
-![image-20240814140027836](C:\Users\chumc\AppData\Roaming\Typora\typora-user-images\image-20240814140027836.png)
+![image-20240814140027836](https://i.ibb.co/N1YLJzd/image-20240814140027836.png)
+
+
 
 OR Open **/etc/hosts** file and add your minikube ip and domain name at the last.
 
@@ -221,7 +223,7 @@ OR Open **/etc/hosts** file and add your minikube ip and domain name at the last
 curl http://rcjerry.com/apache
 ```
 
-![image-20240814140127912](C:\Users\chumc\AppData\Roaming\Typora\typora-user-images\image-20240814140127912.png)
+![image-20240814140127912](https://i.ibb.co/Y0kxw9g/image-20240814140127912.png)
 
 
 
@@ -231,7 +233,7 @@ curl http://rcjerry.com/apache
 curl http://rcjerry.com/nginx
 ```
 
-![image-20240814140213159](C:\Users\chumc\AppData\Roaming\Typora\typora-user-images\image-20240814140213159.png)
+![image-20240814140213159](https://i.ibb.co/WBfh8VH/image-20240814140213159.png)
 
 
 
@@ -241,13 +243,15 @@ OR
 
 **Step1:** Select the Instance from the AWS Console and got to security tab.
 
-![image-20240814140957666](C:\Users\chumc\AppData\Roaming\Typora\typora-user-images\image-20240814140957666.png)
+
+
+![image-20240814140957666](https://i.ibb.co/PxX78sf/image-20240814140957666.png)
 
 **Step2:** Click on the security group and edit inbound rules
 
 
 
-![image-20240814141128278](C:\Users\chumc\AppData\Roaming\Typora\typora-user-images\image-20240814141128278.png)
+![image-20240814141128278](https://i.ibb.co/bdQsq3Z/image-20240814141128278.png)
 
 
 
@@ -255,7 +259,7 @@ OR
 
 
 
-![image-20240814141242731](C:\Users\chumc\AppData\Roaming\Typora\typora-user-images\image-20240814141242731.png)
+![image-20240814141242731](https://i.ibb.co/Vtj8rVb/image-20240814141242731.png)
 
 
 
@@ -267,8 +271,8 @@ OR
   kubectl port-forward svc/apache-service 8081:80 --address 0.0.0.0 &
   ```
 
-  ![image-20240814140411612](C:\Users\chumc\AppData\Roaming\Typora\typora-user-images\image-20240814140411612.png)
-  
+  ![image-20240814140411612](https://i.ibb.co/58zM0xt/image-20240814140411612.png)
+
   
 
 - port forward to access the NGINX service on browser.
@@ -277,7 +281,7 @@ OR
   kubectl port-forward svc/nginx-service 8082:80 --address 0.0.0.0 &
   ```
 
-![image-20240814141516991](C:\Users\chumc\AppData\Roaming\Typora\typora-user-images\image-20240814141516991.png)
+![image-20240814141516991](https://i.ibb.co/dcdvDnF/image-20240814141516991.png)
 
 ------
 
