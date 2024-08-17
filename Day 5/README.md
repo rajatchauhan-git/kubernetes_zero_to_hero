@@ -18,9 +18,7 @@ Persistent Volumes (PVs) are storage units in a Kubernetes cluster that exist in
 
 **Creating a Persistent Volume:**
 
-Copy
 
-Copy
 
 ```yaml
 apiVersion: v1
@@ -39,9 +37,6 @@ spec:
 
 Apply the configuration with:
 
-Copy
-
-Copy
 
 ```yaml
 kubectl apply -f pv.yml
@@ -57,9 +52,7 @@ PVCs are how users request storage in Kubernetes. A PVC will bind to a matching 
 
 **Creating a Persistent Volume Claim:**
 
-Copy
 
-Copy
 
 ```yaml
 apiVersion: v1
@@ -76,9 +69,6 @@ spec:
 
 Apply with:
 
-Copy
-
-Copy
 
 ```yaml
 kubectl apply -f pvc.yml
@@ -86,9 +76,7 @@ kubectl apply -f pvc.yml
 
 **Using PVCs in Pods:**
 
-Copy
 
-Copy
 
 ```yaml
 apiVersion: v1
@@ -110,9 +98,7 @@ spec:
 
 Deploy the Pod with:
 
-Copy
 
-Copy
 
 ```yaml
 kubectl apply -f pod.yml
@@ -122,9 +108,6 @@ This configuration mounts the PVC at `/usr/share/nginx/html` in the NGINX contai
 
 **Short Name**
 
-Copy
-
-Copy
 
 ```yaml
 $ kubectl api-resources
@@ -144,9 +127,7 @@ Storage Classes allow administrators to define different storage profiles, enabl
 
 **Creating a Storage Class:**
 
-Copy
 
-Copy
 
 ```yaml
 apiVersion: storage.k8s.io/v1
@@ -162,9 +143,7 @@ parameters:
 
 Apply with:
 
-Copy
 
-Copy
 
 ```yaml
 kubectl apply -f storageclass.yml
@@ -172,9 +151,7 @@ kubectl apply -f storageclass.yml
 
 **Using a Storage Class with a PVC:**
 
-Copy
 
-Copy
 
 ```yaml
 apiVersion: v1
@@ -192,9 +169,7 @@ spec:
 
 Deploy the PVC with:
 
-Copy
 
-Copy
 
 ```yaml
 kubectl apply -f pvc-with-sc.yml
@@ -212,9 +187,6 @@ StatefulSets are designed for stateful applications, ensuring stable identities 
 
 **Deploying a StatefulSet:**
 
-Copy
-
-Copy
 
 ```yaml
 apiVersion: apps/v1
@@ -252,9 +224,7 @@ spec:
 
 Apply the StatefulSet with:
 
-Copy
 
-Copy
 
 ```yaml
 kubectl apply -f statefulset.yml
@@ -331,9 +301,6 @@ configure authorization mo[des](https://medium.com/@yuminlee2/kubernetes-tls-cer
 
 [For example, to enable RBAC and](https://medium.com/@yuminlee2/kubernetes-tls-certificates-b75fee80670d) Webhook modes, add the following line under the kube-apiserver command:
 
-Copy
-
-Copy
 
 ```
 --authorization-mode=RBAC,Webhook
@@ -349,9 +316,7 @@ Multiple Authorization M[odes allows cluster adminis](https://medium.com/@yuminl
 
 **Creating a Role:**
 
-Copy
 
-Copy
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -367,9 +332,7 @@ rules:
 
 [Apply the](https://medium.com/@yuminlee2/kubernetes-tls-certificates-b75fee80670d) Role with:
 
-Copy
 
-Copy
 
 ```yaml
 kubectl apply -f role.yml
@@ -377,9 +340,7 @@ kubectl apply -f role.yml
 
 **Binding a Role to a User:**
 
-Copy
 
-Copy
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -399,9 +360,7 @@ roleRef:
 
 Apply the RoleBinding with:
 
-Copy
 
-Copy
 
 ```yaml
 kubectl apply -f rolebinding.yml
@@ -443,9 +402,7 @@ encode and de[code in base64](https://kubernetes.io/docs/tasks/administer-cluste
 
 > `-n` : no trailing newline
 
-Copy
 
-Copy
 
 ```yaml
 $ echo -n "<string>" | base64
@@ -453,9 +410,7 @@ $ echo -n "<string>" | base64
 
 example:
 
-Copy
 
-Copy
 
 ```yaml
 $ echo -n "hello world" | base64
@@ -464,9 +419,7 @@ output: aGVsbG8gd29ybGQ=
 
 ## **decode a base64-encoded string**
 
-Copy
 
-Copy
 
 ```yaml
 $ echo -n "<base64_encoded_string>" | base64 --decode
@@ -475,9 +428,7 @@ $ echo -n "<base64_encoded_string>" | base64 -d
 
 exampl[e:](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/)
 
-Copy
 
-Copy
 
 ```yaml
 $ echo -n "aGVsbG8gd29ybGQ=" | base64 --decode
@@ -496,9 +447,6 @@ Secret with YAML
 
 secret.yaml
 
-Copy
-
-Copy
 
 ```yaml
 apiVersion: v1
@@ -522,9 +470,7 @@ Run `kubectl create`command to create a new Secret object.
 
 pod.yaml
 
-Copy
 
-Copy
 
 ```yaml
 apiVersion: v1
@@ -549,9 +495,7 @@ spec:
 
 - [Configure](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) with [a **specified key-value pair** from a Secret](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/)
 
-Copy
 
-Copy
 
 ```yaml
 apiVersion: v1
@@ -581,9 +525,7 @@ spec:
 
 [po](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/)d.yaml
 
-Copy
 
-Copy
 
 ```yaml
 apiVersion: v1
@@ -632,9 +574,7 @@ ingress and egress traffic
 
 # **Short Name: netpol**
 
-Copy
 
-Copy
 
 ```yaml
 $ kubectl api-resources
@@ -652,9 +592,7 @@ The `podSelector` field **selects pods based on their labels** and determines wh
 
 podSelector
 
-Copy
 
-Copy
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -696,9 +634,7 @@ In this case, this NetworkPolicy targets pods labeled with `name: backend`. The 
 
 namespaceSelector
 
-Copy
 
-Copy
 
 ```yaml
 ...
@@ -723,9 +659,7 @@ In this case, it allows traffic from the pods in `namespace1`.
 
 ipBlock
 
-Copy
 
-Copy
 
 ```yaml
 ...
@@ -767,9 +701,7 @@ A server certificate is used to **identify a Kubernetes component**, such as the
 
 **Generating TLS Certificates:** Use OpenSSL to create a certificate:
 
-Copy
 
-Copy
 
 ```yaml
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=my-app/O=my-org"
@@ -777,9 +709,7 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt
 
 **Creating a TLS Secret:**
 
-Copy
 
-Copy
 
 ```yaml
 kubectl create secret tls my-tls-secret --cert=tls.crt --key=tls.key
@@ -787,9 +717,7 @@ kubectl create secret tls my-tls-secret --cert=tls.crt --key=tls.key
 
 **Using TLS in Ingress:**
 
-Copy
 
-Copy
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -816,9 +744,7 @@ spec:
 
 Deploy the Ingress with:
 
-Copy
 
-Copy
 
 ```yaml
 kubectl apply -f ingress.yml
