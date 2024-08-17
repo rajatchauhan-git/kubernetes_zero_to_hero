@@ -350,7 +350,7 @@ metadata:
   namespace: default
 subjects:
 - kind: User
-  name: ojas
+  name: rcjerry
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
@@ -366,7 +366,7 @@ Apply the RoleBinding with:
 kubectl apply -f rolebinding.yml
 ```
 
-The user `ojas` now has read-only access to Pods in the default namespace.
+The user `rcjerry` now has read-only access to Pods in the default namespace.
 
 ------
 
