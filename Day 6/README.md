@@ -86,9 +86,6 @@ Start by checking the current version of your cluster components.
 
 **Command:**
 
-Copy
-
-Copy
 
 ```yaml
 kubectl version --short
@@ -96,9 +93,6 @@ kubectl version --short
 
 **Example Output:**
 
-Copy
-
-Copy
 
 ```yaml
 Client Version: v1.21.0
@@ -111,9 +105,7 @@ Identify the available Kubernetes versions you can upgrade to.
 
 **Command:**
 
-Copy
 
-Copy
 
 ```yaml
 apt-cache madison kubeadm
@@ -121,9 +113,7 @@ apt-cache madison kubeadm
 
 **Example Output:**
 
-Copy
 
-Copy
 
 ```yaml
 kubeadm | 1.22.0-00 | https://apt.kubernetes.io/ kubernetes-xenial/main amd64 Packages
@@ -138,9 +128,7 @@ Before upgrading the control plane components, cordon and drain the master node 
 
 **Commands:**
 
-Copy
 
-Copy
 
 ```yaml
 kubectl cordon <master-node-name>
@@ -149,9 +137,7 @@ kubectl drain <master-node-name> --ignore-daemonsets
 
 **Example:**
 
-Copy
 
-Copy
 
 ```yaml
 kubectl cordon master-node
@@ -164,9 +150,6 @@ Upgrade the **kubeadm** tool on the master node.
 
 **Commands:**
 
-Copy
-
-Copy
 
 ```yaml
 sudo apt-get update && sudo apt-get install -y kubeadm=1.22.0-00
@@ -174,9 +157,7 @@ sudo apt-get update && sudo apt-get install -y kubeadm=1.22.0-00
 
 **Verify the version:**
 
-Copy
 
-Copy
 
 ```yaml
 kubeadm version
@@ -184,9 +165,7 @@ kubeadm version
 
 **Example Output:**
 
-Copy
 
-Copy
 
 ```yaml
 kubeadm version: &version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.0", ...}
@@ -198,9 +177,7 @@ Let **Kubeadm** prepare the upgrade plan.
 
 **Command:**
 
-Copy
 
-Copy
 
 ```yaml
 sudo kubeadm upgrade plan
@@ -214,9 +191,7 @@ Proceed with the upgrade using **Kubeadm**.
 
 **Command:**
 
-Copy
 
-Copy
 
 ```yaml
 sudo kubeadm upgrade apply v1.22.0
@@ -230,9 +205,6 @@ After upgrading the control plane, update **kubelet** and **kubectl**.
 
 **Commands:**
 
-Copy
-
-Copy
 
 ```yaml
 sudo apt-get install -y kubelet=1.22.0-00 kubectl=1.22.0-00
@@ -246,9 +218,7 @@ Allow the master node to schedule pods again.
 
 **Command:**
 
-Copy
 
-Copy
 
 ```yaml
 kubectl uncordon master-node
@@ -260,9 +230,7 @@ Repeat the following steps for each worker node:
 
 **a. Drain the Node:**
 
-Copy
 
-Copy
 
 ```yaml
 kubectl drain <worker-node-name> --ignore-daemonsets
@@ -270,9 +238,7 @@ kubectl drain <worker-node-name> --ignore-daemonsets
 
 **b. Upgrade kubeadm:**
 
-Copy
 
-Copy
 
 ```yaml
 sudo apt-get update && sudo apt-get install -y kubeadm=1.22.0-00
@@ -281,9 +247,7 @@ sudo kubeadm upgrade node
 
 **c. Upgrade kubelet and kubectl:**
 
-Copy
 
-Copy
 
 ```yaml
 sudo apt-get install -y kubelet=1.22.0-00 kubectl=1.22.0-00
@@ -293,9 +257,7 @@ sudo systemctl restart kubelet
 
 **d. Uncordon the Node:**
 
-Copy
 
-Copy
 
 ```yaml
 kubectl uncordon <worker-node-name>
@@ -313,9 +275,7 @@ Achieving zero downtime during upgrades is critical for high-availability applic
 
 **Example of a Pod Disruption Budget:**
 
-Copy
 
-Copy
 
 ```yaml
 apiVersion: policy/v1
@@ -331,9 +291,6 @@ spec:
 
 **Applying the PDB:**
 
-Copy
-
-Copy
 
 ```yaml
 kubectl apply -f pdb.yaml
@@ -351,9 +308,7 @@ If pods with no replica sets prevent draining:
 
 - Identify the pod:
 
-Copy
 
-Copy
 
 ```yaml
 kubectl get pods --all-namespaces -o wide | grep <node-name>
@@ -361,9 +316,7 @@ kubectl get pods --all-namespaces -o wide | grep <node-name>
 
 - Delete the pod if appropriate:
 
-Copy
-
-Copy
+ 
 
 ```yaml
 kubectl delete pod <pod-name> -n <namespace>
@@ -378,9 +331,6 @@ Components running different Kubernetes versions.
 - Ensure all components are upgraded sequentially.
 - Verify versions:
 
-Copy
-
-Copy
 
 ```yaml
 kubectl get nodes
@@ -395,9 +345,7 @@ Issues with etcd during control plane upgrade.
 
 - Check etcd status:
 
-Copy
 
-Copy
 
 ```yaml
 ETCDCTL_API=3 etcdctl endpoint health
@@ -466,9 +414,6 @@ Download the latest release from the [Velero GitHub repository](https://github.c
 
 **Example for Linux:**
 
-Copy
-
-Copy
 
 ```yaml
 wget https://github.com/vmware-tanzu/velero/releases/download/v1.8.0/velero-v1.8.0-linux-amd64.tar.gz
@@ -482,9 +427,6 @@ Create a credentials file for your storage provider.
 
 **Example for AWS:**
 
-Copy
-
-Copy
 
 ```yaml
 [default]
@@ -498,9 +440,6 @@ Use the Velero CLI to install server components.
 
 **Command:**
 
-Copy
-
-Copy
 
 ```yaml
 velero install \
@@ -514,9 +453,7 @@ velero install \
 
 **Verify Installation:**
 
-Copy
 
-Copy
 
 ```yaml
 kubectl get pods -n velero
@@ -524,9 +461,6 @@ kubectl get pods -n velero
 
 **Example Output:**
 
-Copy
-
-Copy
 
 ```yaml
 NAME                      READY   STATUS    RESTARTS   AGE
@@ -541,9 +475,7 @@ With Velero installed, you can create backups of your cluster resources.
 
 **Command:**
 
-Copy
 
-Copy
 
 ```yaml
 velero backup create full-backup
@@ -551,9 +483,6 @@ velero backup create full-backup
 
 **Verify Backup Status:**
 
-Copy
-
-Copy
 
 ```yaml
 velero backup get
@@ -561,9 +490,7 @@ velero backup get
 
 **Example Output:**
 
-Copy
 
-Copy
 
 ```yaml
 NAME          STATUS      ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION
@@ -574,9 +501,6 @@ full-backup   Completed   0        0          2023-10-01 10:00:00 +0000 UTC   29
 
 **Command:**
 
-Copy
-
-Copy
 
 ```yaml
 velero backup create nginx-backup --include-namespaces=nginx
@@ -585,10 +509,6 @@ velero backup create nginx-backup --include-namespaces=nginx
 #### 3. Schedule Regular Backups
 
 **Command:**
-
-Copy
-
-Copy
 
 ```yaml
 velero schedule create daily-backup --schedule="0 2 * * *"
@@ -604,9 +524,6 @@ Restoration is as important as backing up. Velero makes it straightforward to re
 
 **Command:**
 
-Copy
-
-Copy
 
 ```yaml
 velero backup get
@@ -616,9 +533,7 @@ velero backup get
 
 **Command:**
 
-Copy
 
-Copy
 
 ```yaml
 velero restore create --from-backup full-backup
@@ -626,9 +541,6 @@ velero restore create --from-backup full-backup
 
 **Verify Restore Status:**
 
-Copy
-
-Copy
 
 ```yaml
 velero restore get
@@ -636,9 +548,6 @@ velero restore get
 
 **Example Output:**
 
-Copy
-
-Copy
 
 ```yaml
 NAME                    STATUS      ERRORS   WARNINGS   CREATED                         SELECTOR
@@ -649,9 +558,6 @@ restore-full-backup     Completed   0        0          2023-10-01 12:00:00 +000
 
 **Command:**
 
-Copy
-
-Copy
 
 ```yaml
 vlero restore create --from-backup nginx-backup --include-namespaces=nginx
@@ -674,9 +580,6 @@ Implement automated scripts to perform and validate backups regularly.
 
 **Example Script:**
 
-Copy
-
-Copy
 
 ```yaml
 #!/bin/bash
@@ -726,9 +629,6 @@ Understanding the types of scaling is crucial for effective resource management.
 
 **Example:**
 
-Copy
-
-Copy
 
 ```yaml
 apiVersion: apps/v1
@@ -764,9 +664,6 @@ To vertically scale, modify the `resources` section.
 
 **Example:**
 
-Copy
-
-Copy
 
 ```yaml
 kubectl scale deployment my-app --replicas=5
@@ -780,9 +677,6 @@ Manually adjust the number of replicas.
 
 **Command:**
 
-Copy
-
-Copy
 
 ```yaml
 kubectl scale deployment my-app --replicas=3
@@ -798,9 +692,6 @@ Ensure that the Metrics Server is deployed in your cluster.
 
 **Installation:**
 
-Copy
-
-Copy
 
 ```yaml
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
@@ -810,9 +701,6 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 
 **Command:**
 
-Copy
-
-Copy
 
 ```yaml
 kubectl autoscale deployment my-app --cpu-percent=50 --min=2 --max=10
@@ -822,19 +710,12 @@ kubectl autoscale deployment my-app --cpu-percent=50 --min=2 --max=10
 
 **c. View HPA Status**
 
-Copy
-
-Copy
-
 ```yaml
 kubectl get hpa
 ```
 
 **Example Output:**
 
-Copy
-
-Copy
 
 ```yaml
 NAME     REFERENCE           TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
@@ -847,9 +728,6 @@ VPA adjusts the CPU and memory requests/limits of pods based on usage.
 
 **a. Install VPA**
 
-Copy
-
-Copy
 
 ```yaml
 kubectl apply -f https://github.com/kubernetes/autoscaler/releases/latest/download/vertical-pod-autoscaler.yaml
@@ -857,9 +735,6 @@ kubectl apply -f https://github.com/kubernetes/autoscaler/releases/latest/downlo
 
 **b. Configure VPA**
 
-Copy
-
-Copy
 
 ```yaml
 apiVersion: autoscaling.k8s.io/v1
@@ -877,9 +752,6 @@ spec:
 
 **Apply Configuration:**
 
-Copy
-
-Copy
 
 ```yaml
 kubectl apply -f vpa.yaml
@@ -897,9 +769,6 @@ The **Cluster Autoscaler** automatically adjusts the number of nodes in your clu
 
 **For AWS EKS:**
 
-Copy
-
-Copy
 
 ```yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
@@ -911,9 +780,6 @@ Edit the deployment to set the appropriate parameters.
 
 **Example:**
 
-Copy
-
-Copy
 
 ```yaml
 spec:
@@ -938,9 +804,6 @@ Manually add or remove nodes based on demand.
 
 **For AWS EKS:**
 
-Copy
-
-Copy
 
 ```yaml
 aws eks update-nodegroup-config --cluster-name <cluster-name> --nodegroup-name <node-group-name> --scaling-config minSize=2,maxSize=5,desiredSize=3
@@ -970,12 +833,8 @@ By integrating these maintenance practices into your operational workflows, you 
 
 ------
 
-💡
+💡 If you need help or have any questions, just leave them in the comments! 📝 I would be happy to answer them!
 
-If you need help or have any questions, just leave them in the comments! 📝 I would be happy to answer them!
-
-💡
-
-If you found this post useful, please give it a thumbs up 👍 and consider following for more helpful content. 😊
+💡 If you found this post useful, please give it a thumbs up 👍 and consider following for more helpful content. 😊
 
 ### Thank you for taking the time to read! 💚
